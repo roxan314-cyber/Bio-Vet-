@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro | BioVet Enterprise</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/assets/login.css">
+</head>
+<body>
+    <main class="login-box">
+        <form id="registroForm">
+            <h1>Crear cuenta</h1>
+            
+            <div class="input-group">
+                <i class="fas fa-user" aria-hidden="true"></i>
+                <input type="text" id="name" name="name" maxlength="100" autocomplete="name" placeholder="Nombre completo" required>
+                <label for="name">Nombre completo</label>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <input type="email" id="email" name="email" maxlength="100" autocomplete="email" placeholder="Correo electrónico" required>
+                <label for="email">Correo electrónico</label>
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                <input type="password" id="password" name="password" minlength="8" autocomplete="new-password" placeholder="Contraseña" required>
+                <label for="password">Contraseña (mínimo 8 caracteres)</label>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                <input type="password" id="password_confirmation" name="password_confirmation" minlength="8" autocomplete="new-password" placeholder="Confirmar contraseña" required>
+                <label for="password_confirmation">Confirmar contraseña</label>
+            </div>
+            
+            <p id="error-msg" role="status" aria-live="polite" aria-atomic="true"></p>
+            
+            <button type="submit" class="login-btn" id="submitBtn">Registrarse</button>
+            <p class="signup-link"><a href="/login">Volver al inicio de sesión</a></p>
+        </form>
+    </main>
+
+    <script src="/assets/api-client.js" defer></script>
+    <script src="/assets/register.js" defer></script>
+</body>
+</html>
