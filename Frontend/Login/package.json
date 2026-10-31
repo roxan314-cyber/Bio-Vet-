@@ -1,0 +1,21 @@
+{
+  "name": "estructura-html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "node --test ../Test/unit/login.test.js ../Test/unit/register.test.js",
+    "test:e2e": "cypress run --project ../Test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.17.0"
+  },
+  "overrides": {
+    "qs": "6.16.1"
+  }
+}
