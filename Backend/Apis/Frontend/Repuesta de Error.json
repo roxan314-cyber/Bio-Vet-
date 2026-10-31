@@ -1,0 +1,6 @@
+{
+    "success": false,
+    "valid": false,
+    "mensaje": "Token inválido o expirado",
+    "error": "INVALID_TOKEN"
+}

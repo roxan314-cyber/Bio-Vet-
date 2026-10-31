@@ -1,0 +1,154 @@
+{
+  "pages": {
+    "/": {
+      "file": "Frontend/Index/Index Web/indexweb.html",
+      "php": true,
+      "express": true,
+      "content_type": "text/html; charset=utf-8"
+    },
+    "/inicio": {
+      "file": "Frontend/Index/Index Web/indexweb.html",
+      "php": false,
+      "express": true,
+      "content_type": "text/html; charset=utf-8"
+    },
+    "/login": {
+      "file": "Frontend/Index/Index Login/indexlogin.html",
+      "php": true,
+      "express": true,
+      "content_type": "text/html; charset=utf-8"
+    },
+    "/registro": {
+      "file": "Frontend/Registro/registroweb.html",
+      "php": true,
+      "express": true,
+      "content_type": "text/html; charset=utf-8"
+    }
+  },
+  "redirects": {
+    "/indexlogin.html": {
+      "to": "/login",
+      "status": 301,
+      "php": true,
+      "express": true
+    }
+  },
+  "assets": {
+    "/assets/home.css": {
+      "file": "Frontend/Index/Index Web/Style/styleweb.css",
+      "content_type": "text/css; charset=utf-8",
+      "express_type": "text/css"
+    },
+    "/assets/login.css": {
+      "file": "Frontend/Index/Index Login/Style/estiloslogin.css",
+      "content_type": "text/css; charset=utf-8",
+      "express_type": "text/css"
+    },
+    "/assets/home.js": {
+      "file": "Frontend/Login/script.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/session.js": {
+      "file": "Frontend/Login/session.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/login.js": {
+      "file": "Frontend/Login/login.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/register.js": {
+      "file": "Frontend/Registro/register.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/api-client.js": {
+      "file": "Backend/Frontend-Backend/api-client.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/session-store.js": {
+      "file": "Frontend/Models/session-store.js",
+      "content_type": "text/javascript; charset=utf-8",
+      "express_type": "text/javascript"
+    },
+    "/assets/images/fondo.jpg": {
+      "file": "Frontend/Imgweb/fondo.jpg",
+      "content_type": "image/jpeg",
+      "express_type": "image/jpeg"
+    },
+    "/assets/images/logo.jpg": {
+      "file": "Frontend/Imgweb/logo.jpg",
+      "content_type": "image/jpeg",
+      "express_type": "image/jpeg"
+    },
+    "/assets/images/rio.jpg": {
+      "file": "Frontend/Imglogin/rio.jpg",
+      "content_type": "image/jpeg",
+      "express_type": "image/jpeg"
+    }
+  },
+  "api": {
+    "/api/login": {
+      "controller": "auth",
+      "action": "login",
+      "php_methods": ["POST"],
+      "php_method_not_allowed": {
+        "status": 405,
+        "headers": {"Content-Type": "application/json"},
+        "body": {"success": false, "mensaje": "Método no permitido"}
+      },
+      "express_methods": ["POST"]
+    },
+    "/api/register": {
+      "controller": "auth",
+      "action": "register",
+      "php_methods": ["POST"],
+      "php_method_not_allowed": {
+        "status": 405,
+        "headers": {
+          "Allow": "POST",
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "no-store"
+        },
+        "body": {"success": false, "mensaje": "Método no permitido"},
+        "json_flags": 256
+      },
+      "express_methods": ["POST"]
+    },
+    "/api/verify-token": {
+      "controller": "token_verification",
+      "action": "verify",
+      "php_methods": null,
+      "express_methods": ["GET", "OPTIONS"]
+    },
+    "/api/users/me": {
+      "controller": "user_profile",
+      "action": "show",
+      "php_methods": ["GET"],
+      "php_method_not_allowed": {
+        "status": 405,
+        "headers": {
+          "Allow": "GET",
+          "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "no-store"
+        },
+        "body": {"success": false, "mensaje": "Método no permitido"},
+        "json_flags": 2097408
+      },
+      "express_methods": ["GET"]
+    },
+    "/api/health": {
+      "controller": "health",
+      "action": "check",
+      "php_methods": null,
+      "express_methods": ["GET"]
+    }
+  },
+  "express_liveness": {
+    "path": "/health",
+    "body": {"status": "ok"}
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Tus estilos actuales -->
+  <link rel="stylesheet" href="estiloslogin.css">
+  <!-- Font Awesome para íconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="login-box">
+    <h2>BioVet Login</h2>
+    
+    <!-- IMPORTANTE: Añade los atributos id y name a los inputs -->
+    <form id="loginForm">
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" name="email" required>
+        <label>Correo</label>
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" required>
+        <label>Contraseña</label>
+      </div>
+      
+      <button type="submit" class="login-btn">Iniciar Sesión</button>
+    </form>
+    
+    <div class="signup-link">
+      ¿No tienes cuenta? <a href="#">Regístrate</a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault(); // Evita recargar la página
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        const response = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Guardar token (ej. en localStorage)
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('usuario', JSON.stringify(data.usuario));
+          
+          // Redirigir al dashboard
+          window.location.href = '/dashboard.html';
+        } else {
+          alert('X' + data.mensaje);
+        }
+      } catch (error) {
+        alert(' Error de conexión con el servidor');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>

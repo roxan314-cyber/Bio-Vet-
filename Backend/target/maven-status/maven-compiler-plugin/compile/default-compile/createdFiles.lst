@@ -1,0 +1,9 @@
+Main.class
+GestorReportes.class
+Paciente.class
+Doctor.class
+Cliente.class
+DatabaseConfig.class
+HistoriaClinica.class
+ReporteEstadisticas.class
+ReporteData.class

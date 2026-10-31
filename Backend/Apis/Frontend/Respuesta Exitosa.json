@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "valid": true,
+    "mensaje": "Token válido",
+    "usuario": {
+        "id": 1,
+        "name": "Administrador",
+        "email": "admin@biovet.com",
+        "rol": "admin",
+        "ultimo_acceso": "2026-06-16 15:30:00"
+    },
+    "token": {
+        "expira_en": 3590,
+        "expira_en_horas": 1,
+        "expira_en_fecha": "2026-06-16 16:30:00",
+        "emitido_en": "2026-06-16 15:30:00"
+    }
+}
