@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BioVet Enterprise: información sobre servicios veterinarios y acceso a la plataforma.">
+    <title>BioVet Enterprise | Cuidado Veterinario</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/home.css">
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+    <header id="inicio">
+        <nav class="contenedor-nav" aria-label="Navegación principal">
+            <div class="logo">
+                <a href="/" class="enlace-logo">
+                    <img src="/assets/images/logo.jpg" alt="" class="logo-img">
+                    <span class="nombre-logo">BioVet Enterprise</span>
+                </a>
+            </div>
+            <div class="enlaces" id="enlaces">
+                <a href="#inicio" class="btn-header">Inicio</a>
+                <a href="#equipo" class="btn-header">Acerca de</a>
+                <a href="#servicio" class="btn-header">Servicios</a>
+                <a href="#contacto" class="btn-header">Contactos</a>
+            </div>
+            <div class="auth-botones" id="auth-botones">
+                <div class="auth-enlaces" id="auth-enlaces">
+                    <a href="/login" class="btn-login">Iniciar sesión</a>
+                    <a href="/registro" class="btn-registro">Registrarse</a>
+                </div>
+                <div class="perfil-sesion" id="perfil-sesion" hidden>
+                    <span id="perfil-nombre" aria-live="polite"></span>
+                    <button type="button" class="btn-cerrar-sesion" id="cerrar-sesion">Cerrar sesión</button>
+                </div>
+                <span class="estado-perfil" id="estado-perfil" role="status" aria-live="polite"></span>
+            </div>
+        </nav>
+
+        <div class="textos-header">
+            <h1>BioVet Enterprise</h1>
+            <h2>Tu aliado en el cuidado de tus mascotas</h2>
+        </div>
+    </header>
+
+    <main id="contenido">
+        <section class="team-contenedor" id="equipo">
+            <div class="titulos-blancos">
+                <h3>¿Quiénes somos?</h3>
+                <p>Somos un equipo de profesionales apasionados por el cuidado de los animales.</p>
+            </div>
+            
+            <div class="contenedor-cards contenedor">
+                <div class="card">
+                    <i class="fa-solid fa-bullseye icono-card" aria-hidden="true"></i>
+                    <h4>Misión</h4>
+                    <p>Brindar servicios veterinarios de alta calidad para garantizar la salud y bienestar de las mascotas.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-eye icono-card" aria-hidden="true"></i>
+                    <h4>Visión</h4>
+                    <p>Ser la principal referencia en servicios veterinarios de alta calidad en la región.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-heart icono-card" aria-hidden="true"></i>
+                    <h4>Valores</h4>
+                    <p>Integridad, respeto, compromiso y excelencia en el cuidado de los animales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="elegirnos" class="contenedor">
+            <h3 class="titulo-seccion">¿Por qué elegirnos?</h3>
+            <p class="texto-centrado">En BioVet Enterprise nos destacamos por nuestra experiencia, dedicación y compromiso con el bienestar animal. Nuestro equipo utiliza tecnología de vanguardia y crea un ambiente acogedor.</p>
+        </section>
+
+        <section id="servicio" class="contenedor bg-claro">
+            <h3 class="titulo-seccion">Nuestros Servicios</h3>
+            <p class="texto-centrado">Ofrecemos una amplia gama de servicios para satisfacer las necesidades de tus mascotas.</p>
+
+            <div class="lista-servicios">
+                <article class="servicio-card">
+                    <i class="fa-solid fa-stethoscope" aria-hidden="true"></i>
+                    <h4>Consultas veterinarias</h4>
+                </article>
+                <article class="servicio-card">
+                    <i class="fa-solid fa-syringe" aria-hidden="true"></i>
+                    <h4>Vacunación y desparasitación</h4>
+                </article>
+                <article class="servicio-card">
+                    <i class="fa-solid fa-user-doctor" aria-hidden="true"></i>
+                    <h4>Cirugías médicas</h4>
+                </article>
+                <article class="servicio-card">
+                    <i class="fa-solid fa-x-ray" aria-hidden="true"></i>
+                    <h4>Diagnóstico por imagen</h4>
+                </article>
+                <article class="servicio-card">
+                    <i class="fa-solid fa-microscope" aria-hidden="true"></i>
+                    <h4>Laboratorio clínico</h4>
+                </article>
+                <article class="servicio-card">
+                    <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+                    <h4>Emergencias 24/7</h4>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="contenedor contacto" aria-labelledby="titulo-contacto">
+            <div class="bloque-contacto">
+                <h3 class="titulo-seccion" id="titulo-contacto">Accede a BioVet Enterprise</h3>
+                <p class="texto-centrado">Inicia sesión o crea una cuenta para acceder a la plataforma.</p>
+                <div class="acciones-contacto">
+                    <a href="/login" class="btn-login btn-contacto">Iniciar sesión</a>
+                    <a href="/registro" class="btn-registro btn-contacto">Registrarse</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-contenedor contenedor">
+            <p class="copy">&copy; 2026 BioVet Enterprise. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/scrollreveal" defer></script>
+    <script src="/assets/home.js" defer></script>
+    <script src="/assets/api-client.js" defer></script>
+    <script src="/assets/session-store.js" defer></script>
+    <script src="/assets/session.js" defer></script>
+</body>
+</html>
