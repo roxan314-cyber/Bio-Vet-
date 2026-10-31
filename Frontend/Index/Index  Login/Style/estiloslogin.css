@@ -1,0 +1,224 @@
+:root {
+    color-scheme: light;
+    --color-primario: #2c7a7b;
+    --color-primario-hover: #1e5a5b;
+    --color-texto: #2d3748;
+    --color-secundario: #4a5568;
+    --color-borde: #cbd5e0;
+    --color-error: #9b2c2c;
+    --sombra: 0 24px 60px rgb(17 42 48 / 24%);
+    font-family: 'Roboto', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+    padding: 24px;
+    place-items: center;
+    overflow-x: hidden;
+    background-color: #173c40;
+    background-image: url('/assets/images/rio.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--color-texto);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.5;
+}
+
+body::before {
+    position: fixed;
+    z-index: 0;
+    background: linear-gradient(135deg, rgb(17 42 48 / 72%), rgb(44 122 123 / 48%));
+    content: '';
+    inset: 0;
+    pointer-events: none;
+}
+
+.login-box {
+    position: relative;
+    z-index: 1;
+    width: min(100%, 420px);
+    padding: clamp(28px, 7vw, 44px);
+    border: 1px solid rgb(255 255 255 / 65%);
+    border-radius: 18px;
+    background: rgb(255 255 255 / 96%);
+    box-shadow: var(--sombra);
+}
+
+.login-box h1,
+.login-box h2 {
+    margin: 0 0 32px;
+    color: var(--color-primario);
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.input-group i {
+    position: absolute;
+    top: 15px;
+    left: 14px;
+    color: var(--color-primario);
+    font-size: 16px;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.input-group input {
+    width: 100%;
+    min-height: 52px;
+    padding: 20px 14px 8px 42px;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    outline: none;
+    background: #fff;
+    color: var(--color-texto);
+    font: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input::placeholder {
+    color: transparent;
+}
+
+.input-group label {
+    position: absolute;
+    top: 15px;
+    left: 42px;
+    color: var(--color-secundario);
+    font-size: 0.95rem;
+    line-height: 1;
+    pointer-events: none;
+    transition: top 0.2s ease, left 0.2s ease, color 0.2s ease, font-size 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group input:focus-visible {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgb(44 122 123 / 18%);
+}
+
+.input-group:focus-within i {
+    color: var(--color-primario-hover);
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: 5px;
+    left: 42px;
+    color: var(--color-primario);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.login-btn {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 4px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--color-primario);
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.login-btn:hover:not(:disabled) {
+    background: var(--color-primario-hover);
+    box-shadow: 0 8px 18px rgb(44 122 123 / 24%);
+}
+
+.login-btn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.login-btn:focus-visible,
+.signup-link a:focus-visible {
+    outline: 3px solid #173c40;
+    outline-offset: 3px;
+}
+
+.login-btn:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+#errorMessage,
+#error-msg {
+    min-height: 0;
+    margin: 0;
+    color: var(--color-error);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#errorMessage:not(:empty),
+#error-msg:not(:empty) {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border: 1px solid #feb2b2;
+    border-radius: 6px;
+    background: #fff5f5;
+}
+
+#error-msg[data-state="success"]:not(:empty) {
+    border-color: #9ae6b4;
+    background: #f0fff4;
+    color: #276749;
+}
+
+.signup-link {
+    margin: 24px 0 0;
+    color: var(--color-secundario);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.signup-link a {
+    color: var(--color-primario-hover);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.signup-link a:hover {
+    color: var(--color-primario);
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 16px;
+        background-attachment: scroll;
+    }
+
+    .login-box {
+        border-radius: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
