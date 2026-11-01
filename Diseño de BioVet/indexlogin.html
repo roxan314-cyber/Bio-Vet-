@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesion</title>
+    <link rel="icon" href="/imgweb/icono.jpg" type="image/jpg">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="/Estilos CSS/estiloslogin.css">
+</head>
+<body>
+    <div class="login-box">
+        <form id="loginform">
+            <h2>Login</h2>
+
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Username" required>
+                <label>Usuario</label>
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" required>
+                <label>Contraseña</label>
+            </div>
+
+            <button type="submit" class="login-btn" id="submitBtn">Iniciar Sesión</button>
+
+            <p class="signup-link">
+                Eres nuevo aqui? <a href="registroweb.html">Crea una cuenta</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="/Codigo JS/login.js"></script>
+</body>
+</html>

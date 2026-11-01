@@ -1,0 +1,115 @@
+.detalle-main {
+    padding-top: 140px;
+    padding-bottom: 60px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.btn-volver {
+    display: inline-block;
+    text-decoration: none;
+    color: #1a535c;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.detalle-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.detalle-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.icono-box {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    background-color: #e8f4f8;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icono-box i {
+    font-size: 2rem;
+    color: #1a535c;
+}
+
+.detalle-header h1 {
+    font-size: 1.8rem;
+    color: #2b2d42;
+    margin: 0;
+}
+
+.servicio-subtitulo {
+    color: #6c757d;
+    margin-top: 5px;
+    font-size: 0.95rem;
+}
+
+.detalle-body h3 {
+    color: #1a535c;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.detalle-body p {
+    color: #4a5568;
+    line-height: 1.6;
+}
+
+.lista-beneficios {
+    padding-left: 20px;
+    line-height: 1.8;
+    color: #4a5568;
+}
+
+.accion-box {
+    margin-top: 30px;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .detalle-main {
+        padding-top: 110px;
+    }
+
+    .detalle-card {
+        padding: 25px 20px;
+    }
+
+    .detalle-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .detalle-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .detalle-main {
+        padding-top: 100px;
+        width: 95%;
+    }
+
+    .btn-agendar {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Servicio | BioVet Enterprise</title>
+    <link rel="icon" href="../imgweb/icono.jpg" type="image/jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Estilos CSS/styleweb.css">
+    <link rel="stylesheet" href="Estilos CSS/styledetalles.css">
+</head>
+<body>
+
+    <nav class="contenedor-nav">
+        <div class="logo">
+            <a href="indexweb.html" class="enlace-logo">
+                <img src="../imgweb/logo.jpg" alt="Logo de BioVet" class="logo-img">
+                <h2 class="nombre-logo">BioVet Enterprise</h2>
+            </a>
+        </div>
+        <div class="enlaces" id="enlaces">
+            <a href="indexweb.html#inicio" class="btn-header">Inicio</a>
+            <a href="indexweb.html#equipo" class="btn-header">Acerca de</a>
+            <a href="indexweb.html#servicio" class="btn-header">Servicios</a>
+            <a href="indexweb.html#contacto" class="btn-header">Contactos</a>
+        </div>
+        <div class="auth-botones">
+            <a href="indexlogin.html" class="btn-login">Iniciar sesión</a>
+            <a href="registroweb.html" class="btn-registro">Registrarse</a>
+        </div>
+    </nav>
+
+    <main class="detalle-main contenedor">
+        <a href="indexweb.html#servicio" class="btn-volver">
+            <i class="fa-solid fa-arrow-left"></i> Volver a Servicios
+        </a>
+
+        <div class="detalle-card">
+            <div class="detalle-header">
+                <div class="icono-box" id="servicio-icono-box">
+                    <i class="fa-solid fa-stethoscope" id="servicio-icono"></i>
+                </div>
+                <div>
+                    <h1 id="servicio-titulo">Cargando servicio...</h1>
+                    <p class="servicio-subtitulo">Atención profesional especializada para tu mascota</p>
+                </div>
+            </div>
+
+            <div class="detalle-body">
+                <h3>Descripción del Servicio</h3>
+                <p id="servicio-descripcion">Cargando detalles...</p>
+
+                <h3>Beneficios e información clave</h3>
+                <ul class="lista-beneficios" id="servicio-beneficios">
+                </ul>
+
+                <div class="accion-box">
+                    <a href="indexweb.html#contacto" class="btn-registro btn-agendar">
+                        <i class="fa-solid fa-calendar-check"></i> Agendar Cita o Consulta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="redes-sociales">
+        <div class="footer-contenedor contenedor">
+            <div class="redes-sociales">
+                <p>Síguenos en nuestras redes sociales:</p>
+                <div class="iconos-redes">
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.facebook.com"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/es"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            <p class="copy">&copy; 2026 BioVet Enterprise. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="Codigo JS/detalles.js"></script>
+</body>
+</html>
