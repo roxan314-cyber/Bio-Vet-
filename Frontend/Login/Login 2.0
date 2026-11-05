@@ -1,0 +1,59 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const submitBtn = document.getElementById('submitBtn'); // 1. Solucionado: Referencia declarada correctamente
+
+    loginForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // Limpiar errores visuales previos y ocultar el contenedor
+        errorMessage.textContent = '';
+        errorMessage.style.display = 'none';
+
+        // 2. Solucionado: Obtener valores de usuario y contraseña de forma segura
+        const username = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        // Validación básica en el lado del cliente (campos vacíos)
+        if (!username || !password) {
+            errorMessage.textContent = 'Por favor, completa todos los campos obligatorios.';
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        // Estado de carga (Feedback visual)
+        submitBtn.innerText = 'Iniciando sesión...';
+        submitBtn.disabled = true;
+
+        try {
+            // 3. Solucionado: Petición real al servidor usando fetch (reemplaza '/api/login' por tu endpoint real)
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            // Si el servidor responde con un código de error (ej. 401, 400)
+            if (!response.ok) {
+                throw new Error(data.message || 'Usuario o contraseña incorrectos.');
+            }
+
+            // Éxito: Limpiar formulario y redirigir al panel de usuario
+            loginForm.reset();
+            window.location.href = '/dashboard.html'; // Cambia por tu ruta de destino
+
+        } catch (error) {
+            // 4. Solucionado: Uso correcto de errorMessage para reportar fallos en la interfaz
+            errorMessage.textContent = error.message;
+            errorMessage.style.display = 'block';
+        } finally {
+            // 5. Garantizar que el botón siempre se restablezca, ocurra éxito o error
+            submitBtn.innerText = 'Iniciar Sesión';
+            submitBtn.disabled = false;
+        }
+    });
+});
