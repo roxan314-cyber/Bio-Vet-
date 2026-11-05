@@ -10,4 +10,4 @@ CREATE TABLE Clientes (
     telefono VARCHAR(20),
     -- Almacena la dirección de vivienda del cliente sin límite estricto de caracteres
     domicilio TEXT
-);
+);........................................................................................................................
