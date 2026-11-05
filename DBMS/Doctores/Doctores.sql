@@ -1,5 +1,5 @@
 -- Crea la tabla para registrar al personal médico de la clínica
-CREATE TABLE Doctores (1
+CREATE TABLE Doctores (
     -- Código identificador único para cada médico veterianario (Llave Primaria)
     id_doctor VARCHAR(10) PRIMARY KEY,
     -- Nombre y apellido del doctor, campo obligatorio
