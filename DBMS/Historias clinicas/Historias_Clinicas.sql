@@ -24,4 +24,4 @@ CREATE TABLE Historias_Clinicas (
     FOREIGN KEY (id_paciente) REFERENCES Pacientes(id_paciente),
     -- Relaciona esta consulta con un doctor válido de la tabla Doctores
     FOREIGN KEY (id_doctor) REFERENCES Doctores(id_doctor)
-);..............................................................................................................................
+);
