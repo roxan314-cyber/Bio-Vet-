@@ -1,57 +1,74 @@
 <?php
-session_start();
+declare(strict_types=1);
+
+// 1. Iniciar sesión de forma segura 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Configuración de base de datos (MySQL)
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'login_system');
+define('DB_NAME', 'biovet_db'); // 
 
-// Opcional: Usar archivo JSON como base de datos simple
-define('USE_JSON', true); // Cambiar a false para usar MySQL
+// Opcional: Usar archivo JSON como respaldo o desarrollo local
+define('USE_JSON', false); 
 define('JSON_FILE', __DIR__ . '/usuarios.json');
 
-// Función para conectar a MySQL
-function getDBConnection() {
-    try {
-        $conn = new PDO(
-            "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
-            DB_USER,
-            DB_PASS
-        );
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $conn;
-    } catch(PDOException $e) {
-        die("Error de conexión: " . $e->getMessage());
-    }
+/**
+ * Obtiene la conexión PDO de forma segura.
+ * Lanza una excepción en lugar de usar die() para permitir que el endpoint devuelva un JSON 500 limpio.
+ */
+function getDBConnection(): PDO {
+    $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+    
+    $options = [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ];
+
+    return new PDO($dsn, DB_USER, DB_PASS, $options);
 }
 
-// Función para validar usuario (versión JSON)
-function validateUserJSON($username, $password) {
+/**
+ * Valida usuario usando un archivo JSON local (Ideal para pruebas rápidas).
+ */
+function validateUserJSON(string $email, string $password): array|false {
     if (!file_exists(JSON_FILE)) {
         return false;
     }
     
     $users = json_decode(file_get_contents(JSON_FILE), true);
+    if (!is_array($users)) {
+        return false;
+    }
     
     foreach ($users as $user) {
-        if ($user['username'] === $username && password_verify($password, $user['password'])) {
+        // Coincidencia por email y verificación segura de contraseña
+        $userEmail = $user['email'] ?? $user['username'] ?? '';
+        if ($userEmail === $email && password_verify($password, $user['password'])) {
             return $user;
         }
     }
     return false;
 }
 
-// Función para validar usuario (versión MySQL)
-function validateUserMySQL($username, $password) {
+/**
+ * Valida usuario usando MySQL con consultas preparadas (Seguro contra SQL Injection).
+ */
+function validateUserMySQL(string $email, string $password): array|false {
     $conn = getDBConnection();
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->execute(['username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    // Buscamos por correo electrónico (o username según tu esquema de base de datos)
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email LIMIT 1");
+    $stmt->execute(['email' => $email]);
+    $user = $stmt->fetch();
     
     if ($user && password_verify($password, $user['password'])) {
         return $user;
     }
+    
     return false;
 }
-?>
