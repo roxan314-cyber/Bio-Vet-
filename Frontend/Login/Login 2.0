@@ -1,57 +1,81 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const errorMessage = document.getElementById('errorMessage');
-    const submitBtn = document.getElementById('submitBtn'); // 1. Solucionado: Referencia declarada correctamente
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Validación de seguridad
+    if (!loginForm || !submitBtn) return;
 
     loginForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        // Limpiar errores visuales previos y ocultar el contenedor
-        errorMessage.textContent = '';
-        errorMessage.style.display = 'none';
+        // Limpiar errores 
+        if (errorMessage) {
+            errorMessage.textContent = '';
+            errorMessage.style.display = 'none';
+        }
 
-        // 2. Solucionado: Obtener valores de usuario y contraseña de forma segura
-        const username = document.getElementById('username').value.trim();
-        const password = document.getElementById('password').value.trim();
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        
+        const username = usernameInput ? usernameInput.value.trim() : '';
+        const password = passwordInput ? passwordInput.value.trim() : '';
 
-        // Validación básica en el lado del cliente (campos vacíos)
+        // Validación en el lado del cliente
         if (!username || !password) {
-            errorMessage.textContent = 'Por favor, completa todos los campos obligatorios.';
-            errorMessage.style.display = 'block';
+            if (errorMessage) {
+                errorMessage.textContent = 'Por favor, completa todos los campos obligatorios.';
+                errorMessage.style.display = 'block';
+            }
             return;
         }
 
-        // Estado de carga (Feedback visual)
+        // Estado de carga
         submitBtn.innerText = 'Iniciando sesión...';
         submitBtn.disabled = true;
 
         try {
-            // 3. Solucionado: Petición real al servidor usando fetch (reemplaza '/api/login' por tu endpoint real)
             const response = await fetch('/api/login', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({ username, password })
             });
 
-            const data = await response.json();
-
-            // Si el servidor responde con un código de error (ej. 401, 400)
-            if (!response.ok) {
-                throw new Error(data.message || 'Usuario o contraseña incorrectos.');
+            // Intentar parsear la respuesta de forma segura
+            let data;
+            try {
+                data = await response.json();
+            } catch (jsonError) {
+                throw new Error('La respuesta del servidor no tiene un formato válido.');
             }
 
-            // Éxito: Limpiar formulario y redirigir al panel de usuario
+            if (!response.ok) {
+                // Soporta tanto 'message' como 'mensaje' devueltos por PHP
+                throw new Error(data.message || data.mensaje || 'Credenciales incorrectas o error en el servidor.');
+            }
+
+            // Éxito: Guardar el token de sesión
+            if (data.token) {
+                localStorage.setItem('auth_token', data.token);
+                if (data.usuario) {
+                    localStorage.setItem('user_data', JSON.stringify(data.usuario));
+                }
+            }
+
+            // Limpiar y redirigir
             loginForm.reset();
-            window.location.href = '/dashboard.html'; // Cambia por tu ruta de destino
+            window.location.href = '/dashboard.html';
 
         } catch (error) {
-            // 4. Solucionado: Uso correcto de errorMessage para reportar fallos en la interfaz
-            errorMessage.textContent = error.message;
-            errorMessage.style.display = 'block';
+            if (errorMessage) {
+                errorMessage.textContent = error.message || 'No se pudo conectar con el servidor.';
+                errorMessage.style.display = 'block';
+            }
         } finally {
-            // 5. Garantizar que el botón siempre se restablezca, ocurra éxito o error
+            // Restaurar el botón siempre
             submitBtn.innerText = 'Iniciar Sesión';
             submitBtn.disabled = false;
         }
